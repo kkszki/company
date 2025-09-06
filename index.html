@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Villanyszerelés ár kalkulátor</title>
-       <style>
+    <style>
         .form {
             padding: 20px;
-            width: 320px;
+            max-width: 400px;
+            width: 90%;
             margin: 50px auto;
             background-color: white;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
@@ -23,7 +24,30 @@
             margin: 10px 0;
         }
 
-        
+        /* Az egyedi kérés szövegmezője nagyobb és reszponzív legyen */
+        #egyedi-kert {
+            flex: 1;
+            min-height: 80px; /* nagyobb magasság */
+            width: 100%;
+            resize: vertical; /* lehetőség a méret változtatására */
+            padding: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        /* A címke és a mező közötti távolságot növeljük, ha szükséges */
+        .custom-input-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        @media(max-width: 500px) {
+            /* Reszponzív viselkedés kis képernyőn */
+            .form {
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -38,7 +62,7 @@
             </select>
         </div>
 
-         <!-- Alap villanyszerelési opciók -->
+        <!-- Alap villanyszerelési opciók -->
         <div class="form-row"><label for="konnektor">Konnektor bekötés</label><input type="checkbox" id="konnektor" name="konnektor"></div>
         <div class="form-row"><label for="lampa">Lámpa bekötés</label><input type="checkbox" id="lampa" name="lampa"></div>
         <div class="form-row"><label for="kapcsolo">Kapcsoló bekötés</label><input type="checkbox" id="kapcsolo" name="kapcsolo"></div>
@@ -63,10 +87,19 @@
         <div class="form-row"><label for="szenzorok">Szenzorok (mozgás, füst, hőmérséklet)</label><input type="checkbox" id="szenzorok" name="szenzorok"></div>
         <div class="form-row"><label for="helyiseg-vezerles">Helyiségek szerinti vezérlés</label><input type="checkbox" id="helyiseg-vezerles" name="helyiseg-vezerles"></div>
         <div class="form-row"><label for="futes">Fűtés vezérlés</label><input type="checkbox" id="futes" name="futes"></div>
-        <br>
-       <div  style="text-align: center;"> <input type="submit" name="submit" value="Kérjen árajánlatot!"></div>
 
-      </form>
+        <!-- Egyedi kérés -->
+        <div class="custom-input-container" style="margin-top:20px;">
+            <label for="egyedi-kert">Egyedi kérés / megjegyzés</label>
+            <textarea id="egyedi-kert" name="egyedi-kert" placeholder="Ide írhat bármit..." rows="4"></textarea>
+        </div>
+
+       <br>
+       <div style="text-align: center;">
+           <input type="submit" name="submit" value="Kérjen árajánlatot!">
+       </div>
+
+   </form>
     
 </body>
 </html>
