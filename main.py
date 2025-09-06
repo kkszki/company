@@ -55,7 +55,7 @@ arak = {
 @app.route('/', methods=["GET", "POST"])
 def index():
     global names, arak
-    
+    osszeg=0
     if request.method == "POST":
         selected_fazis = request.form.get('fazis')
     if selected_fazis:
@@ -66,6 +66,11 @@ def index():
         if name in request.form:
         # Csak kiírjuk a name-ot, ha be van pipálva
             print (f"A bejelölt checkbox neve: {name}")
+            osszeg+=arak[name]
+    if selected_fazis == "3":
+        print("asa")
+        osszeg=osszeg*2
+    print(osszeg)
     
 
     return render_template('index.html')
