@@ -16,7 +16,12 @@
             font-size: large;
         }
 
-       
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
 
         
     </style>
@@ -25,7 +30,13 @@
 
     <form class="form">
 
-    
+        <div class="form-row">
+            <label for="fazis">Válassza ki a fázis(ok) számát:</label>
+            <select id="fazis" name="fazis">
+                <option value="1">1</option>
+                <option value="3">3</option>
+            </select>
+        </div>
 
       </form>
     
