@@ -28,9 +28,33 @@ names = [
 ]
 
 
+arak = {
+    "konnektor": 3000,               # Ft
+    "lampa": 2500,
+    "kapcsolo": 2000,
+    "amper": 15000,
+    "eloszto": 8000,
+    "villanytuzhely": 12000,
+    "bojler": 15000,
+    "fi-rele": 5000,
+    "foldeles": 20000,
+    "vezetekcsere": 30000,
+    "ujkiadas": 100000,
+    "terv": 20000,
+    "meres": 10000,
+    "ai-asszisztens": 50000,
+    "okos-kamera": 25000,
+    "telefonos-vezerles": 30000,
+    "automatizalas": 35000,
+    "okos-kapcsolo": 15000,
+    "szenzorok": 20000,
+    "helyiseg-vezerles": 25000,
+    "futes": 30000
+}
+
 @app.route('/', methods=["GET", "POST"])
 def index():
-    global names
+    global names, arak
     
     if request.method == "POST":
         selected_fazis = request.form.get('fazis')
