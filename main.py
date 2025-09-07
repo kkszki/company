@@ -52,6 +52,7 @@ arak = {
 
 @app.route('/', methods=["GET", "POST"])
 def index():
+    rendelt=[]
     selected_fazis = None
     osszeg = 0
     if request.method == "POST":
@@ -62,12 +63,13 @@ def index():
             if name in request.form:
                 print(name)
                 osszeg += arak[name]
+                rendelt.append(magyarul)
         if selected_fazis == "3":
             osszeg = osszeg * 2
         egyedi=request.form.get("egyedi-kert")
         print(egyedi)
         print(f"Számított összeg: {osszeg}")
-  
+        print(rendelt)
     return render_template('index.html', osszeg=osszeg)
 
 if __name__ == '__main__':
