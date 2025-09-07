@@ -105,5 +105,19 @@
         <strong>Végösszeg: {{ osszeg }} Ft</strong>
     </div>
 {% endif %}
+
+
+{% if rendelt is not none %}
+    <div style="text-align:center; margin-top:20px; font-size:large;">
+        <strong>Rendelt:</strong>
+        <ul style="list-style-type:none; padding:0; margin-top:10px;">
+            {% for t in rendelt %}
+                <li>{{ t }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+
 </body>
 </html>
