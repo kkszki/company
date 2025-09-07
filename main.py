@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__, template_folder='.', static_folder='.')
 
-
 names = [
     "konnektor",
     "lampa",
@@ -27,9 +26,8 @@ names = [
     "futes"
 ]
 
-
 arak = {
-    "konnektor": 3000,               # Ft
+    "konnektor": 3000,
     "lampa": 2500,
     "kapcsolo": 2000,
     "amper": 15000,
@@ -54,28 +52,20 @@ arak = {
 
 @app.route('/', methods=["GET", "POST"])
 def index():
-    global names, arak
-    osszeg=0
+    selected_fazis = None
+    osszeg = 0
     if request.method == "POST":
         selected_fazis = request.form.get('fazis')
-    if selected_fazis:
-        print(f"A kiválasztott fázis: {selected_fazis}")
-    else:
-        print("Nem lett kiválasztva fázis.")
-    for name in names:
-        if name in request.form:
-        # Csak kiírjuk a name-ot, ha be van pipálva
-            print (f"A bejelölt checkbox neve: {name}")
-            osszeg+=arak[name]
-    if selected_fazis == "3":
-        print("asa")
-        osszeg=osszeg*2
-    print(osszeg)
-    
-
+        # Számítás
+        for name in names:
+            if name in request.form:
+                osszeg += arak[name]
+        if selected_fazis == "3":
+            osszeg = osszeg * 2
+        
+        print(f"Számított összeg: {osszeg}")
+  
     return render_template('index.html')
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
