@@ -70,7 +70,7 @@ def index():
         print(egyedi)
         print(f"Számított összeg: {osszeg}")
         print(rendelt)
-    return render_template('index.html', osszeg=osszeg)
+    return render_template('index.html', osszeg=osszeg, rendelt=rendelt)
 
 if __name__ == '__main__':
     app.run(debug=True)
