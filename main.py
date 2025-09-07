@@ -59,13 +59,15 @@ def index():
         # Számítás
         for name in names:
             if name in request.form:
+                print(name)
                 osszeg += arak[name]
         if selected_fazis == "3":
             osszeg = osszeg * 2
-        
+        egyedi=request.form.get("egyedi-kert")
+        print(egyedi)
         print(f"Számított összeg: {osszeg}")
   
-    return render_template('index.html')
+    return render_template('index.html', osszeg=osszeg)
 
 if __name__ == '__main__':
     app.run(debug=True)
