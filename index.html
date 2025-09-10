@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Villanyszerelés ár kalkulátor</title>
     <style>
+        body{
+         background: linear-gradient(135deg, #e0eafc, #cfdef3);
+        }
         .form {
             padding: 20px;
             max-width: 400px;
@@ -48,6 +51,7 @@
                 padding: 10px;
             }
         }
+      
     </style>
 </head>
 <body>
@@ -107,7 +111,7 @@
 {% endif %}
 
 
-{% if rendelt is not none %}
+{% if rendelt is not none and rendelt !=[] %}
     <div style="text-align:center; margin-top:20px; font-size:large;">
         <strong>Rendelt:</strong>
         <ul style="list-style-type:none; padding:0; margin-top:10px;">
@@ -118,6 +122,14 @@
     </div>
 {% endif %}
 
+
+{% if egyedi is not none and egyedi !="" %}
+    <div style="text-align:center; margin-top:20px; font-size:large;">
+        <strong>Egyedi kérés:</strong>
+        <p>{{egyedi}}</p>
+        <p>Az egyedi kérést az ár nem tartalmazza!</p>
+    </div>
+{% endif %}
 
 </body>
 </html>
