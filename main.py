@@ -50,28 +50,26 @@ arak = {
     "futes": 30000
 }
 
-@app.route('/', methods=["GET", "POST"])
-def index():
-    rendelt=[]
+@app.route('/calc', methods=["GET", "POST"])
+def calc():
+    rendelt = []
     selected_fazis = None
     osszeg = 0
-    egyedi=""
+    egyedi = ""
     if request.method == "POST":
         selected_fazis = request.form.get('fazis')
-        # Számítás
         for name, magyarul in names.items():
-         
             if name in request.form:
-                print(name)
                 osszeg += arak[name]
                 rendelt.append(magyarul)
         if selected_fazis == "3":
-            osszeg = osszeg * 2
-        egyedi=request.form.get("egyedi-kert")
-        print(egyedi)
-        print(f"Számított összeg: {osszeg}")
-        print(rendelt)
-    return render_template('index.html', osszeg=osszeg, rendelt=rendelt, egyedi=egyedi)
+            osszeg *= 2
+        egyedi = request.form.get("egyedi-kert", "")
+    return render_template('calc.html', osszeg=osszeg, rendelt=rendelt, egyedi=egyedi)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
