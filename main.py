@@ -55,6 +55,7 @@ def index():
     rendelt=[]
     selected_fazis = None
     osszeg = 0
+    egyedi=""
     if request.method == "POST":
         selected_fazis = request.form.get('fazis')
         # Számítás
@@ -70,7 +71,7 @@ def index():
         print(egyedi)
         print(f"Számított összeg: {osszeg}")
         print(rendelt)
-    return render_template('index.html', osszeg=osszeg, rendelt=rendelt)
+    return render_template('index.html', osszeg=osszeg, rendelt=rendelt, egyedi=egyedi)
 
 if __name__ == '__main__':
     app.run(debug=True)
