@@ -9,7 +9,6 @@
     <style>
         body{
             background: linear-gradient(to right, #3fc6e4, #03252e);
-
         }
         .mynav{
             background-color: rgba(222, 184, 135, 0.473) !important;
@@ -72,18 +71,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            
             <li class="nav-item">
               <a class="nav-link" href="calc">Árak</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#rolunk">Rólunk</a>
             </li>
-            
           </ul>
         </div>
       </nav>
 
+   {% if osszeg is none or osszeg == 0 %}
+   <!-- Csak akkor mutatjuk az űrlapot, ha még nincs eredmény -->
    <form method="POST" action="/calc" class="form" id="form">
 
         <div class="form-row">
@@ -132,34 +131,35 @@
        </div>
 
    </form>
-   <form class="form">
-   {% if osszeg is not none and osszeg !=0%}
-    <div style="text-align:center; margin-top:20px; font-size:large;" id="osszeg">
-        <strong>Végösszeg: {{ osszeg }} Ft</strong>
+   {% endif %}
+
+   {% if osszeg is not none and osszeg != 0 %}
+   <!-- Csak az eredmény megjelenítése, az űrlap nélkül -->
+   <div class="form" style="max-width: 400px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.3); font-size: large;">
+        <div style="text-align:center; margin-bottom: 15px;">
+            <strong>Végösszeg: {{ osszeg }} Ft</strong>
+        </div>
+
+        {% if rendelt is not none and rendelt != [] %}
+        <div style="text-align:center; margin-bottom: 15px;">
+            <strong>Rendelt:</strong>
+            <ul style="list-style-type:none; padding:0; margin-top:10px;">
+                {% for t in rendelt %}
+                    <li>{{ t }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if egyedi is not none and egyedi != "" %}
+        <div style="text-align:center;">
+            <strong>Egyedi kérés:</strong>
+            <p>{{ egyedi }}</p>
+            <strong>Az egyedi kérést az ár nem tartalmazza.</strong>
+        </div>
+        {% endif %}
     </div>
-{% endif %}
-
-
-
-{% if rendelt is not none and rendelt != [] %}
-    <div style="text-align:center; margin-top:20px; font-size:large;">
-        <strong>Rendelt:</strong>
-        <ul style="list-style-type:none; padding:0; margin-top:10px;">
-            {% for t in rendelt %}
-                <li>{{ t }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endif %}
-
-{% if egyedi is not none and egyedi != "" %}
-    <div style="text-align:center; margin-top:20px; font-size:large;">
-        <strong>Egyedi kérés:</strong>
-        <p>{{ egyedi }}</p>
-        <strong>Az egyedi kérést az ár nem tartalmazza.</strong>
-    </div>
-{% endif %}
-</form>
+   {% endif %}
 
 </body>
 </html>
